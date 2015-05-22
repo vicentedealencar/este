@@ -61,9 +61,13 @@ module.exports = function(isDevelopment) {
       ]
     },
     module: {
+      noParse: /lie.js$|\/levelup\//,
       loaders: [{
         loader: 'url-loader?limit=100000',
         test: /\.(gif|jpg|png|woff|woff2|eot|ttf|svg)$/
+      },{
+        loader: 'json',
+        test: /\.json$/
       }, {
         exclude: /node_modules/,
         loaders: isDevelopment ? [
@@ -88,7 +92,8 @@ module.exports = function(isDevelopment) {
           'process.env': {
             NODE_ENV: JSON.stringify(isDevelopment ? 'development' : 'production'),
             IS_BROWSER: true
-          }
+          },
+          'process.browser': true
         })
       ];
       if (isDevelopment)

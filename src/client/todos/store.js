@@ -4,6 +4,10 @@ import {Range} from 'immutable';
 import {getRandomString} from '../../lib/getrandomstring';
 import {register} from '../dispatcher';
 import {todosCursor} from '../state';
+import PouchDb from 'pouchdb';
+
+
+const db = new PouchDb('http://localhost:5984/utopia');
 
 export const dispatchToken = register(({action, data}) => {
 
@@ -23,6 +27,7 @@ export const dispatchToken = register(({action, data}) => {
               id: getRandomString(),
               title: data.title
             });
+            db.put(todo);
             return list.push(todo);
           })
           .set('newTodo', new Todo);

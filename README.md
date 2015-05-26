@@ -4,6 +4,7 @@ This is a fork of [Este.js](https://github.com/Steida/este) intended to support 
 
 `npm install -g gulp`
 `npm install -g electron-prebuilt`
+`npm install -g pouchdb-server`
 
 `npm install`
 

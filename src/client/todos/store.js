@@ -23,11 +23,12 @@ export const dispatchToken = register(({action, data}) => {
       todosCursor(todos => {
         return todos
           .update('list', (list) => {
-            const todo = new Todo({
+            const baseTodo = {
               id: getRandomString(),
               title: data.title
-            });
-            db.put(todo);
+            };
+            const todo = new Todo(baseTodo);
+            db.post(baseTodo);
             return list.push(todo);
           })
           .set('newTodo', new Todo);
